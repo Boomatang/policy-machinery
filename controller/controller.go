@@ -27,7 +27,7 @@ import (
 	"github.com/kuadrant/policy-machinery/machinery"
 )
 
-const resourceStoreId = "resources"
+const resourceStoreID = "resources"
 
 type ControllerOptions struct {
 	name               string
@@ -195,11 +195,11 @@ func (c *Controller) Start(ctx context.Context) error {
 	if c.manager != nil {
 		ctrl, err := ctrlruntimectrl.New(c.name, c.manager, ctrlruntimectrl.Options{Reconciler: c})
 		if err != nil {
-			return fmt.Errorf("Error creating controller: %v", err)
+			return fmt.Errorf("error creating controller: %v", err)
 		}
 		for _, f := range c.watchFuncs {
 			if err := ctrl.Watch(f(c.manager)); err != nil {
-				return fmt.Errorf("Error watching resource: %v", err)
+				return fmt.Errorf("error watching resource: %v", err)
 			}
 		}
 		c.logger.V(1).Info("starting controller manager")
@@ -214,6 +214,7 @@ func (c *Controller) Start(ctx context.Context) error {
 		select {
 		case <-ctx.Done():
 			close(stopCh)
+		default:
 		}
 	}, time.Second, stopCh)
 	c.logger.Info("stop signal received. finishing controller...")
@@ -237,7 +238,7 @@ func (c *Controller) Reconcile(ctx context.Context, _ ctrlruntimereconcile.Reque
 			store[string(object.GetUID())] = object
 		}
 	}
-	c.cache.Replace(resourceStoreId, store)
+	c.cache.Replace(resourceStoreID, store)
 
 	return ctrlruntimereconcile.Result{}, nil
 }
@@ -254,21 +255,21 @@ func (c *Controller) add(obj Object) {
 	c.Lock()
 	defer c.Unlock()
 
-	c.cache.Add(resourceStoreId, obj)
+	c.cache.Add(resourceStoreID, obj)
 }
 
 func (c *Controller) update(_, newObj Object) {
 	c.Lock()
 	defer c.Unlock()
 
-	c.cache.Add(resourceStoreId, newObj)
+	c.cache.Add(resourceStoreID, newObj)
 }
 
 func (c *Controller) delete(obj Object) {
 	c.Lock()
 	defer c.Unlock()
 
-	c.cache.Delete(resourceStoreId, obj)
+	c.cache.Delete(resourceStoreID, obj)
 }
 
 func (c *Controller) Propagate(resourceEvents []ResourceEvent) {
@@ -294,7 +295,7 @@ func (c *Controller) propagateLocked(resourceEvents []ResourceEvent) {
 
 	// Trace topology build
 	_, buildSpan := c.tracer.Start(ctx, "topology.build")
-	topology, err := c.topology.Build(c.cache.List(resourceStoreId))
+	topology, err := c.topology.Build(c.cache.List(resourceStoreID))
 	if err != nil {
 		c.logger.Error(err, "error building topology")
 		buildSpan.RecordError(err)
@@ -319,9 +320,9 @@ func (c *Controller) propagateLocked(resourceEvents []ResourceEvent) {
 
 func (c *Controller) subscribe(ctx context.Context) {
 	// init and subscribe resource store
-	c.cache.LoadOrStore(resourceStoreId, Store{})
+	c.cache.LoadOrStore(resourceStoreID, Store{})
 	subscription := c.cache.SubscribeSubset(ctx, func(storeId string, _ Store) bool {
-		return storeId == resourceStoreId
+		return storeId == resourceStoreID
 	})
 	// handle cache events
 	objs := make(Store)
@@ -343,7 +344,7 @@ func (c *Controller) handleCacheEvent(snapshot watchable.Snapshot[string, Store]
 	c.logger.V(1).Info("handling new state of the world")
 	defer c.logger.V(1).Info("finished handling new state of the world")
 
-	newObjs := snapshot.State[resourceStoreId]
+	newObjs := snapshot.State[resourceStoreID]
 
 	events := lo.FilterMap(lo.Keys(newObjs), func(uid string, _ int) (ResourceEvent, bool) {
 		newObj := newObjs[uid]

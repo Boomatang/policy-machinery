@@ -1,6 +1,6 @@
 //go:build integration
 
-package json_patch
+package jsonpatch
 
 import (
 	"encoding/json"

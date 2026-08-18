@@ -6,7 +6,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
-	"k8s.io/utils/ptr"
 
 	"github.com/kuadrant/policy-machinery/machinery"
 )
@@ -57,8 +56,8 @@ type ObjectsByCreationTimestamp []Object
 func (a ObjectsByCreationTimestamp) Len() int      { return len(a) }
 func (a ObjectsByCreationTimestamp) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
 func (a ObjectsByCreationTimestamp) Less(i, j int) bool {
-	p1Time := ptr.To(a[i].GetCreationTimestamp())
-	p2Time := ptr.To(a[j].GetCreationTimestamp())
+	p1Time := new(a[i].GetCreationTimestamp())
+	p2Time := new(a[j].GetCreationTimestamp())
 	if !p1Time.Equal(p2Time) {
 		return p1Time.Before(p2Time)
 	}

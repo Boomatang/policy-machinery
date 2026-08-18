@@ -204,7 +204,7 @@ func TestControllerReconcile(t *testing.T) {
 		},
 	}
 	controller.Reconcile(context.TODO(), ctrlruntimereconcile.Request{})
-	cachedObjs := lo.Keys(cache.List(resourceStoreId))
+	cachedObjs := lo.Keys(cache.List(resourceStoreID))
 	if len(cachedObjs) != 2 {
 		t.Errorf("expected 2 objects, got %d", len(cachedObjs))
 	}
@@ -227,8 +227,7 @@ func TestStartControllerUnmanaged(t *testing.T) {
 }
 
 func TestCacheSubscription(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+	ctx := t.Context()
 	count := 0
 	c := NewController(WithReconcile(func(context.Context, []ResourceEvent, *machinery.Topology, error, *sync.Map) error {
 		count++

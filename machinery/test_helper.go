@@ -234,7 +234,7 @@ func LinkInfoFrom(kind string, objects []Object) LinkFunc {
 
 type FruitPolicy struct {
 	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty"`
+	metav1.ObjectMeta `json:"metadata"`
 
 	Spec FruitPolicySpec `json:"spec"`
 }
@@ -254,7 +254,7 @@ func (p *FruitPolicy) GetTargetRefs() []PolicyTargetReference {
 	group := p.Spec.TargetRef.Group
 	kind := p.Spec.TargetRef.Kind
 	if group == TestGroupName && kind == "Orange" {
-		namespace = ptr.To(ptr.Deref(p.Spec.TargetRef.Namespace, p.Namespace))
+		namespace = new(ptr.Deref(p.Spec.TargetRef.Namespace, p.Namespace))
 	}
 	return []PolicyTargetReference{
 		FruitPolicyTargetReference{
@@ -295,6 +295,10 @@ func (t FruitPolicyTargetReference) GroupVersionKind() schema.GroupVersionKind {
 func (t FruitPolicyTargetReference) SetGroupVersionKind(gvk schema.GroupVersionKind) {
 	t.Group = gvk.Group
 	t.Kind = gvk.Kind
+
+	// to please gopls in the test file the group and kind are dropped
+	_ = t.Group
+	_ = t.Kind
 }
 
 func (t FruitPolicyTargetReference) GetLocator() string {

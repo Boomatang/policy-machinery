@@ -1,4 +1,4 @@
-package color_policy
+package colorpolicy
 
 import (
 	"github.com/samber/lo"
@@ -91,7 +91,7 @@ func specContainsRuleFunc(spec ColorSpec) func(ColorRule, int) bool {
 
 func equalRuleFunc(rule ColorRule) func(ColorRule) bool {
 	return func(other ColorRule) bool {
-		return rule.Id == other.Id
+		return rule.ID == other.ID
 	}
 }
 

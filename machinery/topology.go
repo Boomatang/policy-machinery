@@ -3,6 +3,7 @@ package machinery
 import (
 	"errors"
 	"fmt"
+	"maps"
 	"strings"
 
 	"github.com/emicklei/dot"
@@ -167,9 +168,9 @@ func (t *Topology) Objects() *collection[Object] {
 // All returns all object nodes in the topology.
 func (t *Topology) All() *collection[Object] {
 	allObjects := map[string]Object{}
-	for k, v := range t.objects {
-		allObjects[k] = v
-	}
+
+	maps.Copy(allObjects, t.objects)
+
 	for k, v := range t.targetables {
 		allObjects[k] = v
 	}
@@ -186,7 +187,7 @@ func (t *Topology) ToDot() string {
 	return t.graph.String()
 }
 
-// Returns a deep copy of the Graph
+// Graph  Returns a deep copy of the Graph
 func (t *Topology) Graph() *dot.Graph {
 	return t.graph.DeepCopy()
 }
@@ -245,7 +246,7 @@ func isDAG(g *dot.Graph) bool {
 	// https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm
 	type node struct {
 		id       string
-		parents  map[string]interface{}
+		parents  map[string]any
 		children []*node
 	}
 
@@ -265,7 +266,7 @@ func isDAG(g *dot.Graph) bool {
 		for _, n := range nodes {
 			nodeIndex[n.ID()] = &node{
 				id:       n.ID(),
-				parents:  make(map[string]interface{}),
+				parents:  make(map[string]any),
 				children: make([]*node, 0),
 			}
 		}

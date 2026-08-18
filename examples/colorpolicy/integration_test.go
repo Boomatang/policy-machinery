@@ -1,6 +1,6 @@
 //go:build integration
 
-package color_policy
+package colorpolicy
 
 import (
 	"encoding/json"
@@ -72,11 +72,11 @@ func TestKuadrantMergeBasedOnTopology(t *testing.T) {
 				ColorSpecProper: ColorSpecProper{
 					Rules: []ColorRule{
 						{
-							Id:    "walls",
+							ID:    "walls",
 							Color: Black,
 						},
 						{
-							Id:    "doors",
+							ID:    "doors",
 							Color: Blue,
 						},
 					},
@@ -94,11 +94,11 @@ func TestKuadrantMergeBasedOnTopology(t *testing.T) {
 				ColorSpecProper: ColorSpecProper{
 					Rules: []ColorRule{
 						{
-							Id:    "walls",
+							ID:    "walls",
 							Color: Green,
 						},
 						{
-							Id:    "roof",
+							ID:    "roof",
 							Color: Orange,
 						},
 					},
@@ -113,11 +113,11 @@ func TestKuadrantMergeBasedOnTopology(t *testing.T) {
 			p.Spec.TargetRef.SectionName = ptr.To(gwapiv1.SectionName("rule-1"))
 			p.Spec.Rules = []ColorRule{
 				{
-					Id:    "roof",
+					ID:    "roof",
 					Color: Purple,
 				},
 				{
-					Id:    "floor",
+					ID:    "floor",
 					Color: Red,
 				},
 			}
@@ -130,11 +130,11 @@ func TestKuadrantMergeBasedOnTopology(t *testing.T) {
 			p.Spec.TargetRef.SectionName = ptr.To(gwapiv1.SectionName("rule-1"))
 			p.Spec.Rules = []ColorRule{
 				{
-					Id:    "walls",
+					ID:    "walls",
 					Color: White,
 				},
 				{
-					Id:    "floor",
+					ID:    "floor",
 					Color: Yellow,
 				},
 			}
@@ -230,8 +230,8 @@ func TestKuadrantMergeBasedOnTopology(t *testing.T) {
 			t.Fatalf("expected %d rules for path %s, got %d", len(expectedRules), path, len(effectiveRules))
 		}
 		for _, rule := range effectiveRules {
-			if rule.Color != expectedRules[rule.Id] {
-				t.Errorf("expected rule %s to have color %s for path %s, got %s", rule.Id, expectedRules[rule.Id], path, rule.Color)
+			if rule.Color != expectedRules[rule.ID] {
+				t.Errorf("expected rule %s to have color %s for path %s, got %s", rule.ID, expectedRules[rule.ID], path, rule.Color)
 			}
 		}
 	}

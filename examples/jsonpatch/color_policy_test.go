@@ -1,6 +1,6 @@
 //go:build unit
 
-package json_patch
+package jsonpatch
 
 import (
 	"testing"

@@ -45,32 +45,32 @@ type CacheStore struct {
 	watchable.Map[string, Store]
 }
 
-func (c *CacheStore) List(storeId string) Store {
+func (c *CacheStore) List(storeID string) Store {
 	c.RLock()
 	defer c.RUnlock()
-	store, _ := c.Load(storeId)
+	store, _ := c.Load(storeID)
 	return store
 }
 
-func (c *CacheStore) Add(storeId string, obj Object) {
+func (c *CacheStore) Add(storeID string, obj Object) {
 	c.Lock()
 	defer c.Unlock()
 	uid := string(obj.GetUID())
-	store, _ := c.Load(storeId)
+	store, _ := c.Load(storeID)
 	store[uid] = obj
-	c.Store(storeId, store)
+	c.Store(storeID, store)
 }
 
-func (c *CacheStore) Delete(storeId string, obj Object) {
+func (c *CacheStore) Delete(storeID string, obj Object) {
 	c.Lock()
 	defer c.Unlock()
-	store, _ := c.Load(storeId)
+	store, _ := c.Load(storeID)
 	delete(store, string(obj.GetUID()))
-	c.Store(storeId, store)
+	c.Store(storeID, store)
 }
 
-func (c *CacheStore) Replace(storeId string, store Store) {
+func (c *CacheStore) Replace(storeID string, store Store) {
 	c.Lock()
 	defer c.Unlock()
-	c.Store(storeId, store)
+	c.Store(storeID, store)
 }

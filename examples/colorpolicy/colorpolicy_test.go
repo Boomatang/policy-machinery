@@ -1,6 +1,6 @@
 //go:build unit
 
-package color_policy
+package colorpolicy
 
 import (
 	"testing"
@@ -24,11 +24,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -51,11 +51,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -68,7 +68,7 @@ func TestMerge(t *testing.T) {
 					ColorSpecProper: ColorSpecProper{
 						Rules: []ColorRule{
 							{
-								Id:    "rule-3",
+								ID:    "rule-3",
 								Color: Green,
 							},
 						},
@@ -88,11 +88,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -105,11 +105,11 @@ func TestMerge(t *testing.T) {
 					ColorSpecProper: ColorSpecProper{
 						Rules: []ColorRule{
 							{
-								Id:    "rule-1",
+								ID:    "rule-1",
 								Color: Yellow,
 							},
 							{
-								Id:    "rule-3",
+								ID:    "rule-3",
 								Color: Green,
 							},
 						},
@@ -130,11 +130,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -157,11 +157,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -174,7 +174,7 @@ func TestMerge(t *testing.T) {
 					ColorSpecProper: ColorSpecProper{
 						Rules: []ColorRule{
 							{
-								Id:    "rule-3",
+								ID:    "rule-3",
 								Color: Green,
 							},
 						},
@@ -195,11 +195,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -212,11 +212,11 @@ func TestMerge(t *testing.T) {
 					ColorSpecProper: ColorSpecProper{
 						Rules: []ColorRule{
 							{
-								Id:    "rule-1",
+								ID:    "rule-1",
 								Color: Yellow,
 							},
 							{
-								Id:    "rule-3",
+								ID:    "rule-3",
 								Color: Green,
 							},
 						},
@@ -237,11 +237,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -264,11 +264,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -281,7 +281,7 @@ func TestMerge(t *testing.T) {
 					ColorSpecProper: ColorSpecProper{
 						Rules: []ColorRule{
 							{
-								Id:    "rule-3",
+								ID:    "rule-3",
 								Color: Green,
 							},
 						},
@@ -303,11 +303,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -320,11 +320,11 @@ func TestMerge(t *testing.T) {
 					ColorSpecProper: ColorSpecProper{
 						Rules: []ColorRule{
 							{
-								Id:    "rule-1",
+								ID:    "rule-1",
 								Color: Yellow,
 							},
 							{
-								Id:    "rule-3",
+								ID:    "rule-3",
 								Color: Green,
 							},
 						},
@@ -346,11 +346,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -373,11 +373,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -390,7 +390,7 @@ func TestMerge(t *testing.T) {
 					ColorSpecProper: ColorSpecProper{
 						Rules: []ColorRule{
 							{
-								Id:    "rule-3",
+								ID:    "rule-3",
 								Color: Green,
 							},
 						},
@@ -412,11 +412,11 @@ func TestMerge(t *testing.T) {
 						ColorSpecProper: ColorSpecProper{
 							Rules: []ColorRule{
 								{
-									Id:    "rule-1",
+									ID:    "rule-1",
 									Color: Blue,
 								},
 								{
-									Id:    "rule-2",
+									ID:    "rule-2",
 									Color: Red,
 								},
 							},
@@ -429,11 +429,11 @@ func TestMerge(t *testing.T) {
 					ColorSpecProper: ColorSpecProper{
 						Rules: []ColorRule{
 							{
-								Id:    "rule-1",
+								ID:    "rule-1",
 								Color: Yellow,
 							},
 							{
-								Id:    "rule-3",
+								ID:    "rule-3",
 								Color: Green,
 							},
 						},
@@ -456,8 +456,8 @@ func TestMerge(t *testing.T) {
 				t.Errorf("Expected %d rules, but got %d", len(tc.expected), len(mergedRules))
 			}
 			for _, colorRule := range mergedRules {
-				if tc.expected[colorRule.Id] != colorRule.Color {
-					t.Errorf("Expected rule %s to have color %s, but got %s", colorRule.Id, tc.expected[colorRule.Id], colorRule.Color)
+				if tc.expected[colorRule.ID] != colorRule.Color {
+					t.Errorf("Expected rule %s to have color %s, but got %s", colorRule.ID, tc.expected[colorRule.ID], colorRule.Color)
 				}
 			}
 		})
