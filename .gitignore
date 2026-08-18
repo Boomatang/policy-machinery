@@ -4,3 +4,4 @@ tests/out/*.dot
 .DS_Store
 go.work
 go.work.sum
+coverage.out

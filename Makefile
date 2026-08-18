@@ -58,7 +58,7 @@ test: ## Run tests.
 
 .PHONY: test-unit
 test-unit: ## Run unit tests.
-	go test -tags=unit -v ./...
+	go test -tags=unit -v ./... -coverprofile=coverage.out
 
 .PHONY: test-integration
 test-integration: kind ## Run integration tests.
