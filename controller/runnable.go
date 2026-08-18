@@ -285,7 +285,7 @@ func Restructure[T any](obj any) (any, error) {
 
 func Destruct[T any](obj T) (*unstructured.Unstructured, error) {
 	j, _ := json.Marshal(obj)
-	var u map[string]interface{}
+	var u map[string]any
 	if err := json.Unmarshal(j, &u); err != nil {
 		return nil, err
 	}
